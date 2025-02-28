@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vigde-ol <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 10:10:49 by vigde-ol          #+#    #+#             */
-/*   Updated: 2024/11/01 10:10:51 by vigde-ol         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 static char	*ft_free(char *buffer, const char *buf)
@@ -38,7 +26,7 @@ static char	*ft_line(const char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(char));
+	line = malloc((i + 2) * sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -73,7 +61,7 @@ static char	*ft_next(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	new_buffer = ft_calloc(ft_strlen(buffer) - i + 1, sizeof(char));
+	new_buffer = malloc((ft_strlen(buffer) - i + 1) * sizeof(char));
 	if (!new_buffer)
 		return (NULL);
 	i++;
@@ -94,11 +82,15 @@ static char	*ft_next(char *buffer)
 static char	*read_file(int fd, char *buffer)
 {
 	char	*buf;
-	int		byte_read;
-
+	int	byte_read;
+	
 	if (!buffer)
-		buffer = ft_calloc(1, 1);
-	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	{
+		buffer = malloc (1 * sizeof(char));
+		buffer[0] = '\0';
+	}
+	
+	buf = malloc(BUFFER_SIZE + 1 * sizeof(char));
 	if (!buf)
 		return (free(buffer), NULL);
 	byte_read = 1;

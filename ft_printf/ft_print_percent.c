@@ -16,7 +16,6 @@ int	ft_print_percent(void)
 {
 	return (write(1, "%", 1));
 }
-
 /*
 Explicação:
 - A função chama `write` para imprimir o caractere `%`

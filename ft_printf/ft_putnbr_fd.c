@@ -12,8 +12,6 @@
 
 #include "ft_printf.h"
 
-#include "ft_printf.h"
-
 void	ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	num;

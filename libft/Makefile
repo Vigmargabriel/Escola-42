@@ -14,7 +14,7 @@
 NAME = libft.a
 
 # Compilador e flags
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Arquivos de origem
